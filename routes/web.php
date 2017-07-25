@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('tasks')->group(function () {
+    Route::get('/{id?}', 'TaskController@getAllTasks')->name('task.index');
+    Route::post('store', 'TaskController@postStoreTask')->name('task.store');
+    Route::patch('{id}/update', 'TaskController@postUpdateTask')->name('task.update');
+    Route::delete('{id}/delete', 'TaskController@postDeleteTask')->name('task.delete');
+});
